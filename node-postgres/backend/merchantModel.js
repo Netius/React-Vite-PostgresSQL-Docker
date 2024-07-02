@@ -5,12 +5,23 @@
 
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "postgres",
+  user: "my_user",
   host: "localhost",
   database: "my_database",
-  password: "ax",
+  password: "root",
   port: 5432,
 });
+
+const poolConnect = async () => {
+ await pool.connect();
+ console.log("Connected to PostgresSql running in Docker")
+}
+try {
+  poolConnect();
+  
+} catch (error) {
+  console.log(error)
+}
 //get all merchants our database
 const getMerchants = async () => {
   try {
