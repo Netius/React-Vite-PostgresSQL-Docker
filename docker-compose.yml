@@ -5,6 +5,10 @@ services:
 
   db:
     image: postgres
+    container_name: my-postgress
+    # XXX Needed to define ports here-- I was getting error connect econnrefused ::1:5432
+    ports:
+      - "5432:5432"
     restart: always
     # set shared memory limit when using docker-compose
     shm_size: 128mb
@@ -16,7 +20,6 @@ services:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
       POSTGRES_PASSWORD: ax
-
   adminer:
     image: adminer
     restart: always
