@@ -1,22 +1,20 @@
-# base image
+# Use an official Node.js runtime as a parent image
 FROM node:20
 
-# set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-# install and cache app dependencies
-COPY package*.json /app/
+# Install app dependencies
 RUN npm install
 
-# Bundle app source
+# Copy the rest of your application code to the working directory
 COPY . .
 
-RUN npm run build
+# Expose a port to communicate with the React app
+EXPOSE 8000
 
-EXPOSE 5173
-
-# start app dev-mode
-CMD ["npm", "run", "preview"]
+# Start your React app
+CMD ["npm", "run", "dev"]
