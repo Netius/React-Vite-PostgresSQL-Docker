@@ -1,20 +1,32 @@
-Check out this link to add Tables, User and get running postgres:
+# Overview 
 
+## Template project with React-Vite (Javascript) + PostgreSQL with hot-reload running in Docker
+
+This repository is a template to create a application in React Vite using PostgreSQL database running in Docker.
+Using Express as a middleware to connect with PostgreSQL. 
+
+## Features
+  - Hot reloads when changing code in the frontend or backend  
+  - Full integrasjon with PostgreSQL database
+  - One docker-compose.yml for the whole application
+
+## Versions
+  - Docker version 26.1.4
+  - Docker Compose version v2.27.1-desktop.1
+  - Node v20.11.0
+
+## Getting Started
+
+
+
+
+## References
+Postgres and React 
 https://blog.logrocket.com/getting-started-postgres-react-app/
 
 
-SQL Command to run in localhost:8080 after running docker-compose up
 
-CREATE DATABASE my_database;
 
-CREATE TABLE merchants( id SERIAL PRIMARY KEY, name VARCHAR(30), email VARCHAR(30) );
-INSERT INTO merchants (name, email) VALUES ('john', 'john@mail.com');
-INSERT INTO merchants (name, email) VALUES ('elias', 'elias@mail.com');
-INSERT INTO merchants (name, email) VALUES ('eric', 'eric@mail.com');
-INSERT INTO merchants (name, email) VALUES ('dallas', 'dallas@mail.com');
-
-CREATE USER my_user WITH PASSWORD 'root';
-ALTER USER my_user WITH SUPERUSER;
 
 
 ## RWE .nvmrc
