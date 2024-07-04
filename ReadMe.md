@@ -5,10 +5,13 @@
 This repository is a template to create a application in React Vite using PostgreSQL database running in Docker.
 Using Express as a middleware to connect with PostgreSQL. 
 
+Template also includes api calls to PostgreSQL. 
+
 ## Features
   - Hot reloads when changing code in the frontend or backend  
   - Full integrasjon with PostgreSQL database
   - One docker-compose.yml for the whole application
+  - Api calls for Get, Post, Delete, Put with some dummy data
 
 ## Versions
   - Docker version 26.1.4
