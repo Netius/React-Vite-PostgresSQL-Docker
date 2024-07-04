@@ -45,8 +45,10 @@ const getMerchants = async () => {
 
 //create a new merchant record in the databsse
 const createMerchant = (body) => {
+  const { name, email } = body;
+
+  console.log('createMerchant:', name);
   return new Promise(function (resolve, reject) {
-    const { name, email } = body;
     pool.query(
       "INSERT INTO merchants (name, email) VALUES ($1, $2) RETURNING *",
       [name, email],
