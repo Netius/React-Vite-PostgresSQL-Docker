@@ -15,43 +15,46 @@ services:
         source: ./node-postgres/frontend
         target: /app
     tty: true
-      # depends_on: 
-      #   - my-postgress
+    depends_on: 
+      - my-postgress
 
-  # my-backend:
-  #     container_name: my-backend
-  #     build:
-  #       context: ./node-postgres/backend
-  #       dockerfile: Dockerfile
-  #     restart: unless-stopped
-  #     volumes:
-  #       - './node-postgres/backend:/app/src'
-  #     ports:
-  #       - '3001:3001'
-  #     depends_on: 
-  #       - my-postgress
+  my-backend:
+      container_name: my-backend
+      build:
+        context: ./node-postgres/backend
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      volumes:
+      - type: bind
+        source: ./node-postgres/backend
+        target: /app
+      tty: true
+      ports:
+        - '3001:3001'
+      depends_on: 
+        - my-postgress
 
-  # my-postgress:
-  #   image: postgres
-  #   container_name: my-postgress
-  #   # XXX Needed to define ports here-- I was getting error connect econnrefused ::1:5432
-  #   ports:
-  #     - "5432:5432"
-  #   restart: always
-  #   # set shared memory limit when using docker-compose
-  #   shm_size: 128mb
-  #   # or set shared memory limit when deploy via swarm stack
-  #   volumes:
-  #   - ./create-db.sql:/docker-entrypoint-initdb.d/create_database.sql
-  #   #  - type: tmpfs
-  #   #    target: /dev/shm
-  #   #    tmpfs:
-  #   #      size: 134217728 # 128*2^20 bytes = 128Mb
-  #   environment:
-  #     POSTGRES_PASSWORD: ax
+  my-postgress:
+    image: postgres
+    container_name: my-postgress
+    # XXX Needed to define ports here-- I was getting error connect econnrefused ::1:5432
+    ports:
+      - "5432:5432"
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    volumes:
+    - ./create-db.sql:/docker-entrypoint-initdb.d/create_database.sql
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: ax
  
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

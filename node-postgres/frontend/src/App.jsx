@@ -84,8 +84,7 @@ function App() {
 						<img src={reactLogo} className="logo react" alt="React logo" />
 					</a>
 				</div>
-				<h1>Vite + React</h1>
-
+				<h1>Vite + React + Postgres + Docker</h1>
 				<div>
 					{merchants.length > 0 ? (
 						<ul>
