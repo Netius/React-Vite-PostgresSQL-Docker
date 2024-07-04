@@ -17,3 +17,6 @@ CREATE USER my_user WITH PASSWORD 'root';
 ALTER USER my_user WITH SUPERUSER;
 
 
+## RWE .nvmrc
+Med rett node kjør:
+  node -v > .nvmrc

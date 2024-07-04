@@ -2,37 +2,6 @@
 version: '3.9'
 
 services:
-  my-frontend:
-    container_name: my-frontend
-    build:
-      context: ./node-postgres/frontend
-      dockerfile: Dockerfile
-    ports:
-      - 5173:5173
-    working_dir: /app
-    volumes:
-      - type: bind
-        source: ./node-postgres/frontend
-        target: /app
-    tty: true
-    depends_on: 
-      - my-postgress
-
-  my-backend:
-      container_name: my-backend
-      build:
-        context: ./node-postgres/backend
-        dockerfile: Dockerfile
-      restart: unless-stopped
-      volumes:
-      - type: bind
-        source: ./node-postgres/backend
-        target: /app
-      tty: true
-      ports:
-        - '3001:3001'
-      depends_on: 
-        - my-postgress
 
   my-postgress:
     image: postgres
@@ -58,3 +27,38 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  my-backend:
+      container_name: my-backend
+      build:
+        context: ./node-postgres/backend
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      volumes:
+      - type: bind
+        source: ./node-postgres/backend/src
+        target: /app/src
+      tty: true
+      ports:
+        - '3001:3001'
+      depends_on: 
+        - my-postgress
+
+  my-frontend:
+    container_name: my-frontend
+    build:
+      context: ./node-postgres/frontend
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ./node-postgres/frontend/src
+        target: /app/src
+    tty: true
+    depends_on: 
+      - my-backend
+
+
+  
