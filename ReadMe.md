@@ -34,21 +34,21 @@ http://localhost:8080/
 
 See file create-db.sql in root folder for more details on user
 
-System: PostgreSQL
-Server: db
-Username: my_user
-Password: root
-Database: my_database
+  - System: PostgreSQL
+  - Server: db
+  - Username: my_user
+  - Password: root
+  - Database: my_database
 
 #### React-Vite (frontend folder)
 Docker container name: my-frontend
-http://localhost:5173/
+  - http://localhost:5173/
 
 #### Server (backend folder)
 See file create-db.sql in root folder for more details on data in database
-http://localhost:3001/
+  - http://localhost:3001/
 
 ## References
 Postgres and React 
-https://blog.logrocket.com/getting-started-postgres-react-app/
+  - https://blog.logrocket.com/getting-started-postgres-react-app/
 
