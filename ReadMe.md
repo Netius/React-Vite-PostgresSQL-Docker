@@ -35,7 +35,7 @@ http://localhost:8080/
 See file create-db.sql in root folder for more details on user
 
   - System: PostgreSQL
-  - Server: db
+  - Server: my-postgres
   - Username: my_user
   - Password: root
   - Database: my_database
@@ -52,3 +52,5 @@ See file create-db.sql in root folder for more details on data in database
 Postgres and React 
   - https://blog.logrocket.com/getting-started-postgres-react-app/
 
+Docker Compose startup-order
+  - https://docs.docker.com/compose/startup-order/

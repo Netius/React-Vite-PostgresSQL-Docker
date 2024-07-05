@@ -3,12 +3,12 @@ version: '3.9'
 
 services:
 
-  my-postgress:
+  my-postgres:
     image: postgres
-    container_name: my-postgress
+    container_name: my-postgres
     ports:
       - "5432:5432"
-    restart: always
+    # restart: always
     # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
@@ -20,6 +20,14 @@ services:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
       POSTGRES_PASSWORD: ax
+    
+    healthcheck:
+      # test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
  
   adminer:
     image: adminer
@@ -41,8 +49,10 @@ services:
       ports:
         - '3001:3001'
       depends_on: 
-        - my-postgress
-
+        my-postgres:
+          condition: service_healthy
+          restart: true
+          
   my-frontend:
     container_name: my-frontend
     build:
